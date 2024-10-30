@@ -11,8 +11,11 @@
   },
   "dependencies": {
     "flowbite-react": "^0.10.2",
+    "leaflet": "^1.9.4",
+    "leaflet.gridlayer.googlemutant": "^0.14.1",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-leaflet": "^4.2.1",
     "react-router-dom": "^6.27.0"
   },
   "devDependencies": {
