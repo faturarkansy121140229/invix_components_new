@@ -1,58 +1,56 @@
-// LiveMap.jsx
 import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import L from 'leaflet';
-import trukImage from '/images/truk.png'; // Ensure this path is correct
-import mobilImage from '/images/mobil.png'; // Ensure this path is correct
+import trukImage from '/images/truk.svg'; // Pastikan path ini benar
+import mobilImage from '/images/mobil.svg'; // Pastikan path ini benar
 
-// Custom icon for the motor marker
+// Custom icon for the truk marker
 const trukIcon = new L.Icon({
     iconUrl: trukImage,
-    iconSize: [80, 80],       // Increase size for better visibility
-    iconAnchor: [30, 60],     // Adjust anchor point to keep the bottom center of the icon at the marker position
+    iconSize: [80, 80],
+    iconAnchor: [30, 60],
     popupAnchor: [0, -60],
 });
 
 // Custom icon for the mobil marker
 const mobilIcon = new L.Icon({
     iconUrl: mobilImage,
-    iconSize: [80, 80],       // Increase size for better visibility
-    iconAnchor: [30, 60],     // Adjust anchor point to keep the bottom center of the icon at the marker position
+    iconSize: [80, 80],
+    iconAnchor: [30, 60],
     popupAnchor: [0, -60],
 });
 
 const LiveMap = () => {
     return (
-        <div style={{ height: '100vh', width: '100%' }}>
-            <MapContainer center={[-5.429, 105.261]} zoom={13} style={{ height: '100%', width: '100%' }}>
+        <div className="h-screen w-full p-5"> {/* Menggunakan Tailwind untuk padding */}
+            <MapContainer center={[-5.429, 105.261]} zoom={13} className="h-full w-full">
                 <TileLayer
                     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> DIKEDO GPS'
                 />
                 <Marker position={[-5.429, 105.261]} icon={trukIcon}>
                     <Popup>
-                        <div className="w-48 font-sans space-y-3">
-                            {/* Top container for name, time, and buttons */}
-                            <div className="flex justify-between mb-2">
-                                <div className="flex flex-col">
-                                    <h2 className="text-lg font-bold text-blue-600">Mobil A</h2>
-                                    <p className="text-xs text-gray-600 font-bold leading-tight">1 Menit lalu</p>
-                                </div>
-                                <div className="flex space-x-2">
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/call-icon.png" alt="Call" className="w-7" />
-                                    </button>
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/off-icon.png" alt="Alert" className="w-7" />
-                                    </button>
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/reload-icon.png" alt="Power" className="w-7" />
-                                    </button>
-                                </div>
+                        <div className="w-48 font-sans">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-lg font-bold text-blue-600">Mobil A</h2>
+                                <p className="text-xs text-gray-600 font-bold">1 Menit lalu</p>
                             </div>
+                            <hr className="border-gray-300 my-2" />
 
-                            {/* Bottom container for status information */}
+                            <div className="flex justify-around space-x-2 my-2">
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/call-button.svg" alt="Call" className="w-12" />
+                                </button>
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/off-button.svg" alt="Alert" className="w-12" />
+                                </button>
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/reload-button.svg" alt="Power" className="w-12" />
+                                </button>
+                            </div>
+                            <hr className="border-gray-300 my-2" />
+
                             <div className="space-y-1">
                                 <div className="flex justify-between">
                                     <span>Status:</span>
@@ -81,32 +79,29 @@ const LiveMap = () => {
                             </div>
                         </div>
                     </Popup>
-
                 </Marker>
-                {/* Additional markers go here */}
                 <Marker position={[-5.384600, 105.260833]} icon={mobilIcon}>
                     <Popup>
-                        <div className="w-48 font-sans space-y-3">
-                            {/* Top container for name, time, and buttons */}
-                            <div className="flex justify-between mb-2">
-                                <div className="flex flex-col">
-                                    <h2 className="text-lg font-bold text-blue-600">Mobil A</h2>
-                                    <p className="text-xs text-gray-600 font-bold leading-tight">1 Menit lalu</p>
-                                </div>
-                                <div className="flex space-x-2">
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/call-icon.png" alt="Call" className="w-7" />
-                                    </button>
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/off-icon.png" alt="Alert" className="w-7" />
-                                    </button>
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/reload-icon.png" alt="Power" className="w-7" />
-                                    </button>
-                                </div>
+                        <div className="w-48 font-sans">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-lg font-bold text-blue-600">Mobil A</h2>
+                                <p className="text-xs text-gray-600 font-bold">1 Menit lalu</p>
                             </div>
+                            <hr className="border-gray-300 my-2" />
 
-                            {/* Bottom container for status information */}
+                            <div className="flex justify-around space-x-2 my-2">
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/call-button.svg" alt="Call" className="w-12" />
+                                </button>
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/off-button.svg" alt="Alert" className="w-12" />
+                                </button>
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/reload-button.svg" alt="Power" className="w-12" />
+                                </button>
+                            </div>
+                            <hr className="border-gray-300 my-2" />
+
                             <div className="space-y-1">
                                 <div className="flex justify-between">
                                     <span>Status:</span>
@@ -135,31 +130,29 @@ const LiveMap = () => {
                             </div>
                         </div>
                     </Popup>
-
                 </Marker>
                 <Marker position={[-5.364400, 105.312833]} icon={mobilIcon}>
                     <Popup>
-                        <div className="w-48 font-sans space-y-3">
-                            {/* Top container for name, time, and buttons */}
-                            <div className="flex justify-between mb-2">
-                                <div className="flex flex-col">
-                                    <h2 className="text-lg font-bold text-blue-600">Mobil A</h2>
-                                    <p className="text-xs text-gray-600 font-bold leading-tight">1 Menit lalu</p>
-                                </div>
-                                <div className="flex space-x-2">
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/call-icon.png" alt="Call" className="w-7" />
-                                    </button>
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/off-icon.png" alt="Alert" className="w-7" />
-                                    </button>
-                                    <button className="bg-transparent border-none cursor-pointer">
-                                        <img src="/images/reload-icon.png" alt="Power" className="w-7" />
-                                    </button>
-                                </div>
+                        <div className="w-48 font-sans">
+                            <div className="flex justify-between items-center">
+                                <h2 className="text-lg font-bold text-blue-600">Mobil A</h2>
+                                <p className="text-xs text-gray-600 font-bold">1 Menit lalu</p>
                             </div>
+                            <hr className="border-gray-300 my-2" />
 
-                            {/* Bottom container for status information */}
+                            <div className="flex justify-around space-x-2 my-2">
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/call-button.svg" alt="Call" className="w-12" />
+                                </button>
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/off-button.svg" alt="Alert" className="w-12" />
+                                </button>
+                                <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
+                                    <img src="/images/reload-button.svg" alt="Power" className="w-12" />
+                                </button>
+                            </div>
+                            <hr className="border-gray-300 my-2" />
+
                             <div className="space-y-1">
                                 <div className="flex justify-between">
                                     <span>Status:</span>

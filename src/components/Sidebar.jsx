@@ -14,14 +14,14 @@ const SideBar = () => {
 
     return (
         <div className="flex">
-            <div className="relative w-64 min-h-screen h-full flex flex-col bg-cyan-400 p-6 rounded-tr-[30px] rounded-br-[30px] transition-all duration-300 shadow-[0_0px_5px_3px_rgba(0,0,0,0.2)] ">
+            <div className="relative w-64 min-h-screen h-full flex flex-col bg-gradient-to-t from-cyan-200 to-white p-6 rounded-tr-[30px] rounded-br-[30px] transition-all duration-300 shadow-[0_0px_5px_3px_rgba(0,0,0,0.2)]">
                 <div className="sidebar head flex items-center mb-5">
-                    <img src="/images/logo.png" alt="Logo" className="w-7 h-10 mr-3" />
+                    <img src="/images/logo.svg" alt="Logo" className="w-7 h-10 mr-3" />
                     <h1 className="text-3xl text-black font-bold leading-none">
                         DIKEDO<span className="font-normal text-black">GPS</span>
                     </h1>
                 </div>
-                <div className="sidebar head flex gap-5 pb-5 pt-5 border-b border-t border-gray-200 mb-2">
+                <div className="sidebar head flex gap-5 pb-5 pt-5 border-b border-t border-gray-300 mb-2">
                     <div className="user-img w-[44px] h-[44px] rounded-full overflow-hidden">
                         <img src="/images/user.png" alt="User Image" className="w-full object-cover" />
                     </div>
@@ -41,10 +41,10 @@ const SideBar = () => {
                                     onMouseEnter={() => setIsLiveMapHovered(true)}
                                     onMouseLeave={() => setIsLiveMapHovered(false)}
                                     className={`flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg transition-all duration-300
-                                    ${isLiveMapOpen ? 'bg-gray-200 text-cyan-600 font-bold' : 'hover:text-cyan-600 hover:bg-gray-200 hover:font-bold'}`}
+                                    ${isLiveMapOpen ? 'bg-white text-cyan-600 font-bold' : 'hover:text-cyan-600 hover:bg-white hover:font-bold'}`}
                                 >
                                     <img
-                                        src={isLiveMapOpen || isLiveMapHovered ? "/images/livemap_active.png" : "/images/livemap_unactive.png"}
+                                        src={isLiveMapOpen || isLiveMapHovered ? "/images/livemap_active.svg" : "/images/livemap_unactive.svg"}
                                         alt="Live Map Icon"
                                         className="w-6 h-6"
                                     />
@@ -61,7 +61,7 @@ const SideBar = () => {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                            className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                             onMouseEnter={() => setIsLiveMapOpen(true)}
                                             onMouseLeave={() => setIsLiveMapOpen(false)}
                                         >
@@ -71,7 +71,7 @@ const SideBar = () => {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                            className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                             onMouseEnter={() => setIsLiveMapOpen(true)}
                                             onMouseLeave={() => setIsLiveMapOpen(false)}
                                         >
@@ -81,7 +81,7 @@ const SideBar = () => {
                                     <li>
                                         <a
                                             href="#"
-                                            className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                            className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                             onMouseEnter={() => setIsLiveMapOpen(true)}
                                             onMouseLeave={() => setIsLiveMapOpen(false)}
                                         >
@@ -97,10 +97,10 @@ const SideBar = () => {
                             >
                                 <Link
                                     to="/Kendaraan"
-                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                 >
                                     <img
-                                        src={isKendaraanHovered ? "/images/kendaraan_active.png" : "/images/kendaraan_unactive.png"}
+                                        src={isKendaraanHovered ? "/images/kendaraan_active.svg" : "/images/kendaraan_unactive.svg"}
                                         alt="Kendaraan Logo"
                                         className="w-6 h-6"
                                     />
@@ -114,10 +114,10 @@ const SideBar = () => {
                             >
                                 <Link
                                     to="/Tagihan"
-                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                 >
                                     <img
-                                        src={isTagihanHovered ? "/images/tagihan_active.png" : "/images/tagihan_unactive.png"}
+                                        src={isTagihanHovered ? "/images/tagihan_active.svg" : "/images/tagihan_unactive.svg"}
                                         alt="Kendaraan Logo"
                                         className="w-6 h-6"
                                     />
@@ -134,10 +134,10 @@ const SideBar = () => {
                             >
                                 <a
                                     href="#"
-                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                 >
                                     <img
-                                        src={isRuteHovered ? "/images/rute_active.png" : "/images/rute_unactive.png"}
+                                        src={isRuteHovered ? "/images/rute_active.svg" : "/images/rute_unactive.svg"}
                                         alt="Rute Logo"
                                         className="w-6 h-6"
                                     />
@@ -151,10 +151,10 @@ const SideBar = () => {
                             >
                                 <a
                                     href="#"
-                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                 >
                                     <img
-                                        src={isEventHovered ? "/images/event_active.png" : "/images/event_unactive.png"}
+                                        src={isEventHovered ? "/images/event_active.svg" : "/images/event_unactive.svg"}
                                         alt="Event Logo"
                                         className="w-6 h-6"
                                     />
@@ -168,10 +168,10 @@ const SideBar = () => {
                             >
                                 <a
                                     href="#"
-                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                 >
                                     <img
-                                        src={isTripHovered ? "/images/trip_active.png" : "/images/trip_unactive.png"}
+                                        src={isTripHovered ? "/images/trip_active.svg" : "/images/trip_unactive.svg"}
                                         alt="Trip Logo"
                                         className="w-6 h-6"
                                     />
@@ -185,10 +185,10 @@ const SideBar = () => {
                             >
                                 <a
                                     href="#"
-                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-gray-200 hover:font-bold"
+                                    className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
                                 >
                                     <img
-                                        src={isReplayHovered ? "/images/replay_active.png" : "/images/replay_unactive.png"}
+                                        src={isReplayHovered ? "/images/replay_active.svg" : "/images/replay_unactive.svg"}
                                         alt="Replay Logo"
                                         className="w-6 h-6"
                                     />

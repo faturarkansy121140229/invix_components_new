@@ -64,7 +64,7 @@ const Register = () => {
                 <div className="absolute inset-0 bg-gradient-to-b from-[#ADD8E6] to-transparent"></div>
                 <div className='absolute top-[5%] left-[10%] flex flex-col z-10'>
                     <div className='flex items-center'>
-                        <img src="/images/logo.png" alt="Logo" className='w-8.5 h-12 mr-4' />
+                        <img src="/images/logo.svg" alt="Logo" className='w-8.5 h-12 mr-4' />
                         <h1 className='text-4xl text-black font-bold'>
                             DIKEDO<span className="font-normal">GPS</span>
                         </h1>
@@ -75,8 +75,8 @@ const Register = () => {
                 <img src="/images/cover_image.png" className='w-full h-full object-cover' />
             </div>
 
-            <img src="/images/ornament.png" alt="Ornament" className="absolute bottom-0 left-0 w-16 h-16" />
-            <img src="/images/ornament.png" alt="Ornament" className="absolute top-0 right-0 w-16 h-16 transform scale-x-[-1] scale-y-[-1]" />
+            <img src="/images/ornament.svg" alt="Ornament" className="absolute bottom-0 left-0 w-16 h-16" />
+            <img src="/images/ornament.svg" alt="Ornament" className="absolute top-0 right-0 w-16 h-16 transform scale-x-[-1] scale-y-[-1]" />
         </div>
     );
 };
