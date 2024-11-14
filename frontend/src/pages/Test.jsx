@@ -46,51 +46,8 @@ export default class Test extends Component {
     return (
       <div>
         <div className="overflow-x-auto">
-          <Table id="search-table">
-            <Table.Head>
-              <Table.HeadCell></Table.HeadCell>
-              <Table.HeadCell>No Kendaraan</Table.HeadCell>
-              <Table.HeadCell>ID Perangkat</Table.HeadCell>
-              <Table.HeadCell>Kategori</Table.HeadCell>
-              <Table.HeadCell>No Telepon</Table.HeadCell>
-              <Table.HeadCell>Operator</Table.HeadCell>
-            </Table.Head>
-            <Table.Body className="divide-y">
-              {/* {devices && devices.length > 0 ? (
-                devices.map((device) => (
-                  <Table.Row key={device.id}>
-                    <Table.Cell>
-                      <DeviceEditDataButton />
-                    </Table.Cell>
-                    <Table.Cell>{device.no_kendaraan}</Table.Cell>
-                    <Table.Cell>{device.id_perangkat}</Table.Cell>
-                    <Table.Cell>{device.kategori}</Table.Cell>
-                    <Table.Cell>{device.no_telepon}</Table.Cell>
-                    <Table.Cell>{device.operator}</Table.Cell>
-                  </Table.Row>
-                ))
-              ) : (
-                <Table.Row>
-                  <Table.Cell colSpan={6}>No devices found.</Table.Cell>
-                </Table.Row>
-              )} */}
-
-              {/* <Table.Row>
-                <Table.Cell>1</Table.Cell>
-                <Table.Cell>a</Table.Cell>
-                <Table.Cell>b</Table.Cell>
-                <Table.Cell>c</Table.Cell>
-                <Table.Cell>d</Table.Cell>
-                <Table.Cell>e</Table.Cell>
-              </Table.Row> */}
-
-              {/* <Table.Row>
-                <Table.Cell colSpan={6}>No devices found.</Table.Cell>
-              </Table.Row> */}
-            </Table.Body>
-          </Table>
+          <h5>Mantap Jiwa</h5>
         </div>
-        <script></script>
       </div>
     );
   }
