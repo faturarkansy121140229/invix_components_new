@@ -18,11 +18,13 @@ export default class FilterTable extends Component {
   render() {
     return (
       <div>
-        <Dropdown label="Dropdown button" dismissOnClick={false}>
-          <Dropdown.Item>Dashboard</Dropdown.Item>
-          <Dropdown.Item>Settings</Dropdown.Item>
-          <Dropdown.Item>Earnings</Dropdown.Item>
-          <Dropdown.Item>Sign out</Dropdown.Item>
+        {/* <Dropdown label="Dropdown button" dismissOnClick={false}> */}
+        <Dropdown value={10} dismissOnClick={false}>
+          <Dropdown.Item>5</Dropdown.Item>
+          <Dropdown.Item>10</Dropdown.Item>
+          <Dropdown.Item>15</Dropdown.Item>
+          <Dropdown.Item>20</Dropdown.Item>
+          <Dropdown.Item>25</Dropdown.Item>
         </Dropdown>
       </div>
     );

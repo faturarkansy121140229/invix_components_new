@@ -55,7 +55,7 @@ export default class DeviceEditDataButton extends Component {
     event.preventDefault();
     const { noKendaraan, idPerangkat, kategori, noTelepon, operator } =
       this.state;
-    const url = "https://your-domain.com/api/login"; // Change to your actual endpoint
+    const url = "https://dikedo.com/api/device?id={device.id}"; // Change endpoint
 
     try {
       await axios.post(url, {

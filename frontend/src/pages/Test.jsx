@@ -1,104 +1,97 @@
-"use client";
-
 import React, { Component } from "react";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
+import { Table } from "flowbite-react";
+import { DataTable } from "simple-datatables";
+
+import { API_URL } from "../utils/constants";
+import DeviceEditDataButton from "../components/DeviceEditDataButton";
 
 export default class Test extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
-      openModal: false,
-      name: "",
-      email: "",
+      devices: [],
     };
   }
 
-  setOpenModal = (value) => {
-    this.setState({ openModal: value });
-  };
-
-  setName = (value) => {
-    this.setState({ name: value });
-  };
-
-  setEmail = (value) => {
-    this.setState({ email: value });
-  };
-
-  onCloseModal = () => {
-    this.setOpenModal(false);
-    this.name("");
-    this.setEmail("");
-  };
-
-  handleSubmit = async (event) => {
-    event.preventDefault();
-    const { name, email } = this.state;
-    const url = "https://your-domain.com/api/login"; // Change to your actual endpoint
-
-    try {
-      await axios.post(url, {
-        name: name,
-        email: email,
+  componentDidMount() {
+    axios
+      .get(API_URL + "devices")
+      .then((res) => {
+        const devices = res.data;
+        this.setState({ devices });
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
       });
-      alert("Login successful");
-    } catch (error) {
-      console.error("Error:", error);
-      alert("Login failed");
+
+    this.initializeDataTable();
+  }
+
+  initializeDataTable = () => {
+    if (
+      document.getElementById("search-table") &&
+      typeof DataTable !== "undefined"
+    ) {
+      const dataTable = new DataTable("#search-table", {
+        searchable: true,
+        sortable: false,
+      });
     }
   };
 
   render() {
-    const { openModal, email } = this.state;
+    const { devices } = this.state;
     return (
-      <>
-        <Button
-          onClick={() => this.setOpenModal(true)}
-          className="rounded-full"
-        >
-          <FontAwesomeIcon icon={faPencil} className="fa-solid pt-1" />
-        </Button>
-        <Modal show={openModal} size="md" onClose={this.onCloseModal} popup>
-          <Modal.Header />
-          <Modal.Body>
-            <div className="space-y-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white text-center">
-                Change User Data
-              </h3>
-              <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="userName" value="Your Name" />
-                </div>
-                <TextInput
-                  id="name"
-                  placeholder="John Doe"
-                  value={email}
-                  onChange={(event) => this.setEmail(event.target.value)}
-                  required
-                />
-              </div>
-              <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="password" value="Your email" />
-                </div>
-                <TextInput
-                  id="email"
-                  placeholder="name@company.com"
-                  value={email}
-                  onChange={(event) => this.setEmail(event.target.value)}
-                  required
-                />
-              </div>
-              <div className="w-full">
-                <Button className="w-full">Save User Data</Button>
-              </div>
-            </div>
-          </Modal.Body>
-        </Modal>
-      </>
+      <div>
+        <div className="overflow-x-auto">
+          <Table id="search-table">
+            <Table.Head>
+              <Table.HeadCell></Table.HeadCell>
+              <Table.HeadCell>No Kendaraan</Table.HeadCell>
+              <Table.HeadCell>ID Perangkat</Table.HeadCell>
+              <Table.HeadCell>Kategori</Table.HeadCell>
+              <Table.HeadCell>No Telepon</Table.HeadCell>
+              <Table.HeadCell>Operator</Table.HeadCell>
+            </Table.Head>
+            <Table.Body className="divide-y">
+              {/* {devices && devices.length > 0 ? (
+                devices.map((device) => (
+                  <Table.Row key={device.id}>
+                    <Table.Cell>
+                      <DeviceEditDataButton />
+                    </Table.Cell>
+                    <Table.Cell>{device.no_kendaraan}</Table.Cell>
+                    <Table.Cell>{device.id_perangkat}</Table.Cell>
+                    <Table.Cell>{device.kategori}</Table.Cell>
+                    <Table.Cell>{device.no_telepon}</Table.Cell>
+                    <Table.Cell>{device.operator}</Table.Cell>
+                  </Table.Row>
+                ))
+              ) : (
+                <Table.Row>
+                  <Table.Cell colSpan={6}>No devices found.</Table.Cell>
+                </Table.Row>
+              )} */}
+
+              {/* <Table.Row>
+                <Table.Cell>1</Table.Cell>
+                <Table.Cell>a</Table.Cell>
+                <Table.Cell>b</Table.Cell>
+                <Table.Cell>c</Table.Cell>
+                <Table.Cell>d</Table.Cell>
+                <Table.Cell>e</Table.Cell>
+              </Table.Row> */}
+
+              {/* <Table.Row>
+                <Table.Cell colSpan={6}>No devices found.</Table.Cell>
+              </Table.Row> */}
+            </Table.Body>
+          </Table>
+        </div>
+        <script></script>
+      </div>
     );
   }
 }
