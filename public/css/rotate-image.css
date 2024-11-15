@@ -1,0 +1,14 @@
+/* Animasi rotasi */
+@keyframes rotateAnimation {
+  from {
+    transform: rotateY(0deg);
+  }
+  to {
+    transform: rotateY(360deg);
+  }
+}
+
+/* Class untuk gambar yang akan dirotasi */
+.rotate-image:hover {
+  animation: rotateAnimation 3s linear;
+}

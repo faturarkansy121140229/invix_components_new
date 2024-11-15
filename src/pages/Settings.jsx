@@ -1,20 +1,25 @@
 import React from "react";
 import Table from "../components/Table";
-import FilterTable from "../components/FilterTable";
-import Search from "../components/Search";
+import ProfileDetail from "../components/ProfileDetail";
 
 const Settings = () => {
   return (
-    <div className="m-2">
-      <h5 className="text-center">
-        <strong>SETTINGS</strong>
-      </h5>
-      <hr />
-      <div className="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
-        <FilterTable />
-        <Search />
+    <div>
+      <div className="m-2">
+        <h5 className="title text-center text-sm mx-2 p-1 font-semibold border-b-2 border-neutral-400 text-white bg-orange-400 flex justify-center rounded-[20px]">
+          <strong>ACCOUNT SETTINGS</strong>
+        </h5>
+        <div className="mx-10">
+          <ProfileDetail />
+        </div>
       </div>
-      <Table />
+      <div className="m-2">
+        <h5 className="title text-center text-sm mx-2 p-1 font-semibold border-b-2 border-neutral-400 text-white bg-orange-400 flex justify-center rounded-[20px]">
+          <strong>DEVICES SETTINGS</strong>
+        </h5>
+        <hr />
+        <Table />
+      </div>
     </div>
   );
 };

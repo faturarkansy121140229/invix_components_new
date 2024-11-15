@@ -9,6 +9,7 @@ import Kendaraan from "./pages/Kendaraan_Page";
 import Tagihan from "./pages/Tagihan_Page";
 import Pricing from "./pages/Pricing_Page";
 import Settings from "./pages/Settings";
+import Test from "./pages/Test";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/Tagihan" element={<Tagihan />} />
             <Route path="/Pricing" element={<Pricing />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/test" element={<Test />} />
           </Routes>
         </div>
       </div>

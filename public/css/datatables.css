@@ -28,11 +28,16 @@
 .datatable-selector {
   padding: 6px;
   border-radius: 8px;
-  /* border: 1px solid #666; */
 }
 
 .datatable-input {
   padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.datatable-search {
+  padding: 0px;
+  border-radius: 8px;
 }
 
 .datatable-info {
