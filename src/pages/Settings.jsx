@@ -4,17 +4,17 @@ import ProfileDetail from "../components/ProfileDetail";
 
 const Settings = () => {
   return (
-    <div>
+    <div className="w-[85vw] lg:w-auto">
       <div className="m-2">
-        <h5 className="title text-center text-sm mx-2 p-1 font-semibold border-b-2 border-neutral-400 text-white bg-orange-400 flex justify-center rounded-[20px]">
+        <h5 className="title text-center text-sm mx-2 p-1 font-semibold border-b-2 border-neutral-400 text-white bg-orange-400 flex justify-center lg:rounded-[20px]">
           <strong>ACCOUNT SETTINGS</strong>
         </h5>
-        <div className="mx-10">
+        <div className="">
           <ProfileDetail />
         </div>
       </div>
       <div className="m-2">
-        <h5 className="title text-center text-sm mx-2 p-1 font-semibold border-b-2 border-neutral-400 text-white bg-orange-400 flex justify-center rounded-[20px]">
+        <h5 className="title text-center text-sm mx-2 p-1 font-semibold border-b-2 border-neutral-400 text-white bg-orange-400 flex justify-center lg:rounded-[20px]">
           <strong>DEVICES SETTINGS</strong>
         </h5>
         <hr />

@@ -10,8 +10,8 @@ const Register = () => {
     const navigate = useNavigate();
 
     return (
-        <div className='w-full h-screen flex items-start'>
-            <div className='w-1/2 h-full bg-[#f5f5f5] flex flex-col items-center justify-center p-20'>
+        <div className='w-full h-screen flex flex-col md:flex-row items-start'>
+            <div className='w-full md:w-1/2 h-full bg-[#f5f5f5] flex flex-col items-center justify-center p-20'>
                 <div className='w-full flex flex-col max-w-[500px]'>
                     <div className='w-full flex flex-col mb-2'>
                         <h3 className='text-3xl font-semibold mb-2'>Register</h3>
@@ -60,7 +60,7 @@ const Register = () => {
                 </div>
             </div>
 
-            <div className='relative w-1/2 h-full flex flex-col'>
+            <div className='relative hidden md:flex w-1/2 h-full flex-col'>
                 <div className="absolute inset-0 bg-gradient-to-b from-[#ADD8E6] to-transparent"></div>
                 <div className='absolute top-[5%] left-[10%] flex flex-col z-10'>
                     <div className='flex items-center'>
@@ -75,8 +75,8 @@ const Register = () => {
                 <img src="/images/cover_image.png" className='w-full h-full object-cover' />
             </div>
 
-            <img src="/images/ornament.svg" alt="Ornament" className="absolute bottom-0 left-0 w-16 h-16" />
-            <img src="/images/ornament.svg" alt="Ornament" className="absolute top-0 right-0 w-16 h-16 transform scale-x-[-1] scale-y-[-1]" />
+            <img src="/images/ornament.svg" alt="Ornament" className="absolute bottom-0 left-0 w-20 h-20" />
+            <img src="/images/ornament.svg" alt="Ornament" className="absolute top-0 right-0 w-20 h-20 transform scale-x-[-1] scale-y-[-1]" />
         </div>
     );
 };

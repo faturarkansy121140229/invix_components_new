@@ -38,6 +38,8 @@ export default class Test extends Component {
         const dataTable = new DataTable("#search-table", {
           searchable: true,
           sortable: false,
+          scrollx: true,
+          responsive: true,
         });
       }
     }, 0);
@@ -48,7 +50,7 @@ export default class Test extends Component {
     devices && devices.length > 0 ? "tabel berisi" : "tabel kosong";
 
     return (
-      <div>
+      <div className="">
         <div className="overflow-x-auto">
           <Table id="search-table">
             <Table.Head>
@@ -64,7 +66,10 @@ export default class Test extends Component {
                 devices.map((device) => (
                   <Table.Row key={device.id}>
                     <Table.Cell>
-                      <DeviceEditDataButton device={device} />
+                      <div className="flex flex-row gap-x-1">
+                        <DeviceEditDataButton device={device} />
+                        <DeviceEditDataButton device={device} />
+                      </div>
                     </Table.Cell>
                     <Table.Cell>{device.no_kendaraan}</Table.Cell>
                     <Table.Cell>{device.id_perangkat}</Table.Cell>

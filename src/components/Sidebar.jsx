@@ -1,249 +1,127 @@
-import {
-  HiArrowSmRight,
-  HiChartPie,
-  HiInbox,
-  HiShoppingBag,
-  HiTable,
-  HiUser,
-} from "react-icons/hi";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SideBar = () => {
-  const [isLiveMapOpen, setIsLiveMapOpen] = useState(false);
-  const [isLiveMapHovered, setIsLiveMapHovered] = useState(false);
-  const [isKendaraanHovered, setIsKendaraanHovered] = useState(false);
-  const [isTagihanHovered, setIsTagihanHovered] = useState(false);
-  const [isRuteHovered, setIsRuteHovered] = useState(false);
-  const [isEventHovered, setIsEventHovered] = useState(false);
-  const [isTripHovered, setIsTripHovered] = useState(false);
-  const [isReplayHovered, setIsReplayHovered] = useState(false);
+  const [hoveredItem, setHoveredItem] = useState("");
+  const [isUserHovered, setIsUserHovered] = useState(false);
+
+  const menuItems = [
+    {
+      name: "Live Map",
+      route: "/Live-map",
+      icon: "/images/livemap_active.svg",
+      inactiveIcon: "/images/livemap_unactive.svg",
+    },
+    {
+      name: "Kendaraan",
+      route: "/Kendaraan",
+      icon: "/images/kendaraan_active.svg",
+      inactiveIcon: "/images/kendaraan_unactive.svg",
+    },
+    {
+      name: "Tagihan",
+      route: "/Tagihan",
+      icon: "/images/tagihan_active.svg",
+      inactiveIcon: "/images/tagihan_unactive.svg",
+    },
+    {
+      name: "Rute",
+      route: "/Rute",
+      icon: "/images/rute_active.svg",
+      inactiveIcon: "/images/rute_unactive.svg",
+    },
+    {
+      name: "Event",
+      route: "/Event",
+      icon: "/images/event_active.svg",
+      inactiveIcon: "/images/event_unactive.svg",
+    },
+    {
+      name: "Trip",
+      route: "/Trip",
+      icon: "/images/trip_active.svg",
+      inactiveIcon: "/images/trip_unactive.svg",
+    },
+    {
+      name: "Replay",
+      route: "/Replay",
+      icon: "/images/replay_active.svg",
+      inactiveIcon: "/images/replay_unactive.svg",
+    },
+    {
+      name: "Settings",
+      route: "/Settings",
+      icon: "/images/settings_active.svg",
+      inactiveIcon: "/images/settings_unactive.svg",
+    },
+  ];
+
+  const handleHover = (itemName) => setHoveredItem(itemName);
+  const handleMouseLeave = () => setHoveredItem("");
 
   return (
-    <div className="flex">
-      <link rel="stylesheet" href="/css/rotate-image.css" />
-
-      <div className="relative w-16 min-h-screen h-full flex flex-col bg-gradient-to-t from-cyan-200 to-white p-2 transition-all duration-300 shadow-[0_0px_5px_3px_rgba(0,0,0,0.2)]">
-        {/* website logo */}
-        <div className="rotate-image sidebar head flex items-center justify-center py-4">
-          <Link to="/">
-            <img
-              src="/images/logo.svg"
-              alt="Website Logo"
-              className="w-7 h-10"
-            />
+    <div className="sticky top-0 h-screen z-20 w-[15vw] lg:w-auto">
+      <div className="min-h-screen h-full flex items-center flex-col bg-gradient-to-t from-cyan-200 to-white pt-6 pb-4 px-1 lg:px-4 shadow-[0_0px_5px_3px_rgba(0,0,0,0.2)]">
+        <div className="sidebar head flex items-center pb-4">
+          <img src="/images/logo.svg" alt="Logo" className="w-12 h-14 " />
+        </div>
+        <div
+          className="sidebar head flex items-center border-y-2 border-orange-400 py-4 mb-5 relative"
+          onMouseEnter={() => setIsUserHovered(true)}
+          onMouseLeave={() => setIsUserHovered(false)}
+        >
+          <Link to="/Settings">
+            <div className="user-img w-full h-12 rounded-full overflow-hidden cursor-pointer">
+              <img
+                src="/images/user.png"
+                alt="User"
+                className="w-full h-full object-cover"
+              />
+            </div>
           </Link>
+
+          {isUserHovered && (
+            <div className="absolute left-20 top-1/2 transform -translate-y-1/2 px-3 py-2 pb-3 rounded-lg bg-black text-white text-sm shadow-md">
+              <span className="font-bold">Fatur Arkan Syawalva</span>
+              <br />
+              <span className="font-medium">fatur@gmail.com</span>
+              <span className="absolute left-[-5px] top-[35px] w-3 h-3 bg-black transform rotate-45"></span>
+            </div>
+          )}
         </div>
 
-        {/* user */}
-        <div className="sidebar head flex gap-5 py-4 border-b border-t border-gray-300 mb-2">
-          <div className="user-img rounded-full overflow-hidden">
-            <img
-              src="/images/user-profile.svg"
-              alt="User Image"
-              className="w-full object-cover"
-            />
-          </div>
-        </div>
-
-        {/* main menu */}
         <div className="flex-1">
           <div className="menu">
-            <sr />
-            <ul>
-              <li className="relative list-none active mb-1">
-                <Link
-                  to="/live-map"
-                  // onClick={() => setIsLiveMapOpen(!isLiveMapOpen)}
-                  onMouseEnter={() => setIsLiveMapHovered(true)}
-                  onMouseLeave={() => setIsLiveMapHovered(false)}
-                  className={`flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg transition-all duration-300
-                                    ${
-                                      isLiveMapOpen
-                                        ? "bg-white text-cyan-600 font-bold"
-                                        : "hover:text-cyan-600 hover:bg-white hover:font-bold"
-                                    }`}
+            <ul className="">
+              {menuItems.map((item) => (
+                <li
+                  key={item.name}
+                  className="relative list-none"
+                  onMouseEnter={() => handleHover(item.name)}
+                  onMouseLeave={handleMouseLeave}
                 >
-                  <img
-                    src={
-                      isLiveMapOpen || isLiveMapHovered
-                        ? "/images/livemap_active.svg"
-                        : "/images/livemap_unactive.svg"
-                    }
-                    alt="Live Map Icon"
-                    className="w-8 h-8"
-                  />
-                  {/* <span className="arrow ph-bold ph-house-simple text-xs transform transition-transform duration-300">
+                  <Link
+                    to={item.route}
+                    className="relative flex items-center justify-center text-black text-sm font-medium rounded-lg mb-4"
+                  >
                     <img
-                      src="/images/down.svg"
-                      alt="down arrow"
-                      className={`w-4 h-4 inline transform transition-transform duration-300 ${
-                        isLiveMapOpen ? "rotate-180" : "rotate-0"
-                      }`}
+                      src={
+                        hoveredItem === item.name
+                          ? item.icon
+                          : item.inactiveIcon
+                      }
+                      alt={`${item.name} Icon`}
+                      className="w-10 h-10"
                     />
-                  </span> */}
-                </Link>
-                {/* popup list */}
-                {/* <ul
-                  className={`sub-menu ${
-                    isLiveMapOpen ? "block" : "hidden"
-                  } ml-5 pl-5 pt-1 border-l border-white`}
-                >
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                      onMouseEnter={() => setIsLiveMapOpen(true)}
-                      onMouseLeave={() => setIsLiveMapOpen(false)}
-                    >
-                      <span className="text">Mobil A</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                      onMouseEnter={() => setIsLiveMapOpen(true)}
-                      onMouseLeave={() => setIsLiveMapOpen(false)}
-                    >
-                      <span className="text">Mobil Y</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="#"
-                      className="flex items-center gap-2 text-black text-sm font-medium p-3 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                      onMouseEnter={() => setIsLiveMapOpen(true)}
-                      onMouseLeave={() => setIsLiveMapOpen(false)}
-                    >
-                      <span className="text">Mobil F</span>
-                    </a>
-                  </li>
-                </ul> */}
-              </li>
-              <li
-                className="relative list-none active mb-1"
-                onMouseEnter={() => setIsKendaraanHovered(true)}
-                onMouseLeave={() => setIsKendaraanHovered(false)}
-              >
-                <Link
-                  to="/Kendaraan"
-                  className="flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                >
-                  <img
-                    src={
-                      isKendaraanHovered
-                        ? "/images/kendaraan_active.svg"
-                        : "/images/kendaraan_unactive.svg"
-                    }
-                    alt="Kendaraan Logo"
-                    className="w-8 h-8"
-                  />
-                </Link>
-              </li>
-              <li
-                className="relative list-none active mb-1"
-                onMouseEnter={() => setIsTagihanHovered(true)}
-                onMouseLeave={() => setIsTagihanHovered(false)}
-              >
-                <Link
-                  to="/Tagihan"
-                  className="flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                >
-                  <img
-                    src={
-                      isTagihanHovered
-                        ? "/images/tagihan_active.svg"
-                        : "/images/tagihan_unactive.svg"
-                    }
-                    alt="Kendaraan Logo"
-                    className="w-8 h-8"
-                  />
-                </Link>
-              </li>
-            </ul>
-
-            <ul>
-              <li
-                className="relative list-none active mb-1"
-                onMouseEnter={() => setIsRuteHovered(true)}
-                onMouseLeave={() => setIsRuteHovered(false)}
-              >
-                <a
-                  href="#"
-                  className="flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                >
-                  <img
-                    src={
-                      isRuteHovered
-                        ? "/images/rute_active.svg"
-                        : "/images/rute_unactive.svg"
-                    }
-                    alt="Rute Logo"
-                    className="w-8 h-8"
-                  />
-                </a>
-              </li>
-              <li
-                className="relative list-none active mb-1"
-                onMouseEnter={() => setIsEventHovered(true)}
-                onMouseLeave={() => setIsEventHovered(false)}
-              >
-                <a
-                  href="#"
-                  className="flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                >
-                  <img
-                    src={
-                      isEventHovered
-                        ? "/images/event_active.svg"
-                        : "/images/event_unactive.svg"
-                    }
-                    alt="Event Logo"
-                    className="w-8 h-8"
-                  />
-                </a>
-              </li>
-              <li
-                className="relative list-none active mb-1"
-                onMouseEnter={() => setIsTripHovered(true)}
-                onMouseLeave={() => setIsTripHovered(false)}
-              >
-                <a
-                  href="#"
-                  className="flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                >
-                  <img
-                    src={
-                      isTripHovered
-                        ? "/images/trip_active.svg"
-                        : "/images/trip_unactive.svg"
-                    }
-                    alt="Trip Logo"
-                    className="w-8 h-8"
-                  />
-                </a>
-              </li>
-              <li
-                className="relative list-none active mb-1"
-                onMouseEnter={() => setIsReplayHovered(true)}
-                onMouseLeave={() => setIsReplayHovered(false)}
-              >
-                <a
-                  href="#"
-                  className="flex items-center gap-2 text-black text-sm font-medium p-2 rounded-lg hover:text-cyan-600 hover:bg-white hover:font-bold"
-                >
-                  <img
-                    src={
-                      isReplayHovered
-                        ? "/images/replay_active.svg"
-                        : "/images/replay_unactive.svg"
-                    }
-                    alt="Replay Logo"
-                    className="w-8 h-8"
-                  />
-                </a>
-              </li>
+                    {hoveredItem === item.name && (
+                      <span className="absolute left-[11vw] lg:left-20 top-1/2 transform -translate-y-1/2 px-3 py-1 rounded-lg text-white bg-black text-sm whitespace-nowrap shadow-md pb-1.5">
+                        {item.name}
+                        <span className="absolute left-[-5px] top-[9px] w-3 h-3 bg-black transform rotate-45"></span>
+                      </span>
+                    )}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
         </div>

@@ -4,6 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import swal from "sweetalert";
+import { useMediaQuery } from "react-responsive";
+import { useNavigate } from "react-router-dom";
 
 export default class UserEditDataButton extends Component {
   constructor(props) {
@@ -57,20 +59,30 @@ export default class UserEditDataButton extends Component {
       icon: icon,
       buttons: false,
       timer: 1500,
+      customClass: {
+        popup: "custom-swal-popup",
+      },
     });
   };
 
   render() {
     const { openModal, name, email } = this.state;
     return (
-      <>
+      <div className="flex">
         <Button
           onClick={() => this.setOpenModal(true)}
           className="rounded-full mr-2"
         >
           <FontAwesomeIcon icon={faPencil} className="fa-solid pt-1" />
         </Button>
-        <Modal show={openModal} size="md" onClose={this.onCloseModal} popup>
+        <Modal
+          show={openModal}
+          size="md"
+          onClose={this.onCloseModal}
+          popup
+          // className="z-10 ml-[15%] lg:ml-20 flex flex-col lg:flex-row justify-center items-center"
+          className="z-10 ml-[15%] lg:ml-20"
+        >
           <Modal.Header />
           <Modal.Body>
             <div className="space-y-6">
@@ -107,7 +119,7 @@ export default class UserEditDataButton extends Component {
             </div>
           </Modal.Body>
         </Modal>
-      </>
+      </div>
     );
   }
 }

@@ -1,38 +1,133 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Sidebar from "./components/Sidebar";
-import Login from "./pages/Login_Page";
-import Register from "./pages/Register_Page";
-import ResetPassword from "./pages/ResetPassword_Page";
-import LiveMap from "./pages/LiveMap_Page";
-import Kendaraan from "./pages/Kendaraan_Page";
-import Tagihan from "./pages/Tagihan_Page";
-import Pricing from "./pages/Pricing_Page";
+
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import ResetPassword from "./pages/ResetPassword";
+import LiveMap from "./pages/LiveMap";
+import Kendaraan from "./pages/Kendaraan";
+import Tagihan from "./pages/Tagihan";
+import Prices from "./pages/Prices";
+import Rute from "./pages/Rute";
+import Event from "./pages/Event";
+import Trip from "./pages/Trip";
+import Replay from "./pages/Replay";
 import Settings from "./pages/Settings";
-import Test from "./pages/Test";
+
+const WithSidebar = ({ children }) => (
+  <div className="flex min-h-screen">
+    <Sidebar />
+    <div className="flex-1">{children}</div>
+  </div>
+);
+
+const WithoutSidebar = ({ children }) => <div className="flex">{children}</div>;
 
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex">
-        <Sidebar />
-        <div className="flex-1">
-          <Routes>
-            {/* Authentication Pages */}
-            <Route path="/Register" element={<Register />} />
-            <Route path="/Login" element={<Login />} />
-            <Route path="/Reset-Password" element={<ResetPassword />} />
+      <Routes>
+        {/* Authenticate Pages */}
+        <Route
+          path="/Login"
+          element={
+            <WithoutSidebar>
+              <Login />
+            </WithoutSidebar>
+          }
+        />
+        <Route
+          path="/Register"
+          element={
+            <WithoutSidebar>
+              <Register />
+            </WithoutSidebar>
+          }
+        />
+        <Route
+          path="/Reset-Password"
+          element={
+            <WithoutSidebar>
+              <ResetPassword />
+            </WithoutSidebar>
+          }
+        />
 
-            {/* User Pages */}
-            <Route path="/Live-Map" element={<LiveMap />} />
-            <Route path="/Kendaraan" element={<Kendaraan />} />
-            <Route path="/Tagihan" element={<Tagihan />} />
-            <Route path="/Pricing" element={<Pricing />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/test" element={<Test />} />
-          </Routes>
-        </div>
-      </div>
+        {/* user Pages */}
+        <Route
+          path="/live-map"
+          element={
+            <WithSidebar>
+              <LiveMap />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/kendaraan"
+          element={
+            <WithSidebar>
+              <Kendaraan />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/tagihan"
+          element={
+            <WithSidebar>
+              <Tagihan />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/prices"
+          element={
+            <WithSidebar>
+              <Prices />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/rute"
+          element={
+            <WithSidebar>
+              <Rute />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/event"
+          element={
+            <WithSidebar>
+              <Event />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/trip"
+          element={
+            <WithSidebar>
+              <Trip />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/replay"
+          element={
+            <WithSidebar>
+              <Replay />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <WithSidebar>
+              <Settings />
+            </WithSidebar>
+          }
+        />
+      </Routes>
     </BrowserRouter>
   );
 }
