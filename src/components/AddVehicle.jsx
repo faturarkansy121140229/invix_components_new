@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Button, Label, Modal, TextInput } from "flowbite-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import swal from "sweetalert";
 
-export default class DeviceEditDataButton extends Component {
+export default class AddVehicle extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +55,7 @@ export default class DeviceEditDataButton extends Component {
     event.preventDefault();
     const { noKendaraan, idPerangkat, kategori, noTelepon, operator } =
       this.state;
-    const url = "https://dikedo.com/api/device?id={device.id}"; // Change endpoint
+    const url = `https://dikedo.com/api/device?id=${device.id}`; // Change endpoint
 
     try {
       await axios.post(url, {
@@ -91,28 +91,25 @@ export default class DeviceEditDataButton extends Component {
       noTelepon,
       operator,
     } = this.state;
-    const { device } = this.props;
     return (
       <>
-        <Button onClick={() => this.setOpenModal(true)}>
-          <FontAwesomeIcon icon={faPencil} className="fa-solid" />
+        <Button onClick={() => this.setOpenModal(true)} className="bg-cyan-500">
+          <p>
+            Tambah <FontAwesomeIcon icon={faPlus} className="fa-solid" />
+          </p>
         </Button>
         <Modal show={openModal} size="md" onClose={this.onCloseModal} popup>
           <Modal.Header />
           <Modal.Body>
             <div className="space-y-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white text-center">
-                Change Device Data
-              </h3>
               <div>
                 <div className="mb-2 block">
                   <Label htmlFor="noKendaraan" value="No Kendaraan" />
                 </div>
                 <TextInput
                   id="noKendaraan"
-                  value={noKendaraan ? noKendaraan : device.no_kendaraan}
                   onChange={(event) => this.setNoKendaraan(event.target.value)}
-                  placeholder={device.no_kendaraan}
+                  // placeholder="B1977WSA"
                   required
                 />
               </div>
@@ -122,9 +119,7 @@ export default class DeviceEditDataButton extends Component {
                 </div>
                 <TextInput
                   id="idPerangkat"
-                  value={idPerangkat ? idPerangkat : device.id_perangkat}
                   onChange={(event) => this.setIdPerangkat(event.target.value)}
-                  placeholder={device.id_perangkat}
                   required
                 />
               </div>
@@ -134,7 +129,6 @@ export default class DeviceEditDataButton extends Component {
                 </div>
                 <TextInput
                   id="kategori"
-                  value={kategori ? kategori : device.kategori}
                   onChange={(event) => this.setKategori(event.target.value)}
                   required
                 />
@@ -145,9 +139,7 @@ export default class DeviceEditDataButton extends Component {
                 </div>
                 <TextInput
                   id="noTelepon"
-                  value={noTelepon ? noTelepon : device.no_telepon}
                   onChange={(event) => this.setNoTelepon(event.target.value)}
-                  placeholder={device.no_telepon}
                   required
                 />
               </div>
@@ -157,13 +149,14 @@ export default class DeviceEditDataButton extends Component {
                 </div>
                 <TextInput
                   id="operator"
-                  value={operator ? operator : device.operator}
                   onChange={(event) => this.setOperator(event.target.value)}
                   required
                 />
               </div>
               <div className="w-full">
-                <Button className="w-full">Save Device Data</Button>
+                <Button onClick={this.handleSubmit} className="w-full">
+                  Tambah Kendaraan
+                </Button>
               </div>
             </div>
           </Modal.Body>

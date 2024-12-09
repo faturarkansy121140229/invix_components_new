@@ -7,6 +7,8 @@ import Register from "./pages/Register";
 import ResetPassword from "./pages/ResetPassword";
 import LiveMap from "./pages/LiveMap";
 import Kendaraan from "./pages/Kendaraan";
+import KendaraanDetail from "./pages/KendaraanDetail";
+import KendaraanEdit from "./pages/KendaraanEdit";
 import Tagihan from "./pages/Tagihan";
 import Prices from "./pages/Prices";
 import Rute from "./pages/Rute";
@@ -68,6 +70,22 @@ function App() {
           element={
             <WithSidebar>
               <Kendaraan />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/kendaraan/:id"
+          element={
+            <WithSidebar>
+              <KendaraanDetail />
+            </WithSidebar>
+          }
+        />
+        <Route
+          path="/kendaraan/:id/edit"
+          element={
+            <WithSidebar>
+              <KendaraanEdit />
             </WithSidebar>
           }
         />

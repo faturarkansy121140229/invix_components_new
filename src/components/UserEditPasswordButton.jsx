@@ -11,7 +11,8 @@ export default class UserEditDataButton extends Component {
     this.state = {
       openModal: false,
       otp: "",
-      password: "",
+      oldPassword: "",
+      newPassword: "",
     };
   }
 
@@ -23,14 +24,19 @@ export default class UserEditDataButton extends Component {
     this.setState({ otp: value });
   };
 
-  setPassword = (value) => {
-    this.setState({ password: value });
+  setOldPassword = (value) => {
+    this.setState({ oldPassword: value });
+  };
+
+  setNewPassword = (value) => {
+    this.setState({ newPassword: value });
   };
 
   onCloseModal = () => {
     this.setOpenModal(false);
     this.setOtp("");
-    this.setPassword("");
+    this.setOldPassword("");
+    this.setNewPassword("");
   };
 
   requestOtp = async (event) => {
@@ -54,13 +60,14 @@ export default class UserEditDataButton extends Component {
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { otp, password } = this.state;
+    const { otp, oldPassword, newPassword } = this.state;
     const url = "https://your-domain.com/api/login"; // Change to your actual endpoint
 
     try {
       await axios.post(url, {
         otp: otp,
-        password: password,
+        oldPassword: oldPassword,
+        newPassword: newPassword,
       });
       this.popupStatus("Success", "User password has changed", "success");
     } catch (error) {
@@ -80,7 +87,7 @@ export default class UserEditDataButton extends Component {
   };
 
   render() {
-    const { openModal, otp, password } = this.state;
+    const { openModal, otp, oldPassword, newPassword } = this.state;
     return (
       <>
         <Button
@@ -117,18 +124,32 @@ export default class UserEditDataButton extends Component {
               </div>
               <div>
                 <div className="mb-2 block">
-                  <Label htmlFor="password" value="New Password" />
+                  <Label htmlFor="oldPassword" value="Old Password" />
                 </div>
                 <TextInput
-                  id="password"
+                  id="oldPassword"
                   type="password"
-                  value={password}
-                  onChange={(event) => this.setPassword(event.target.value)}
+                  value={oldPassword}
+                  onChange={(event) => this.setOldPassword(event.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <div className="mb-2 block">
+                  <Label htmlFor="newPassword" value="New Password" />
+                </div>
+                <TextInput
+                  id="newPassword"
+                  type="password"
+                  value={newPassword}
+                  onChange={(event) => this.setNewPassword(event.target.value)}
                   required
                 />
               </div>
               <div className="w-full">
-                <Button className="w-full">Save User Password</Button>
+                <Button onClick={this.handleSubmit} className="w-full">
+                  Save User Password
+                </Button>
               </div>
             </div>
           </Modal.Body>

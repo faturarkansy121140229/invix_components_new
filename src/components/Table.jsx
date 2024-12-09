@@ -4,7 +4,8 @@ import { Table } from "flowbite-react";
 import { DataTable } from "simple-datatables";
 
 import { API_URL } from "../utils/constants";
-import DeviceEditDataButton from "../components/DeviceEditDataButton";
+import DeviceEditButton from "./DeviceEditButton";
+import DeviceDeleteButton from "./DeviceDeleteButton";
 
 export default class Test extends Component {
   constructor(props) {
@@ -13,20 +14,6 @@ export default class Test extends Component {
     this.state = {
       devices: [],
     };
-  }
-
-  componentDidMount() {
-    axios
-      .get(API_URL + "devices")
-      .then((res) => {
-        const devices = res.data;
-        this.setState({ devices }, () => {
-          this.initializeDataTable();
-        });
-      })
-      .catch((error) => {
-        console.log("Error: ", error);
-      });
   }
 
   initializeDataTable() {
@@ -45,9 +32,22 @@ export default class Test extends Component {
     }, 0);
   }
 
+  componentDidMount() {
+    axios
+      .get(API_URL + "devices")
+      .then((res) => {
+        const devices = res.data;
+        this.setState({ devices }, () => {
+          this.initializeDataTable();
+        });
+      })
+      .catch((error) => {
+        console.log("Error: ", error);
+      });
+  }
+
   render() {
     const { devices } = this.state;
-    devices && devices.length > 0 ? "tabel berisi" : "tabel kosong";
 
     return (
       <div className="">
@@ -67,8 +67,8 @@ export default class Test extends Component {
                   <Table.Row key={device.id}>
                     <Table.Cell>
                       <div className="flex flex-row gap-x-1">
-                        <DeviceEditDataButton device={device} />
-                        <DeviceEditDataButton device={device} />
+                        <DeviceEditButton device={device} />
+                        <DeviceDeleteButton device={device} />
                       </div>
                     </Table.Cell>
                     <Table.Cell>{device.no_kendaraan}</Table.Cell>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Link } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
@@ -302,25 +303,31 @@ const LiveMap = () => {
                   <hr className="border-gray-300 my-2" />
                   <div className="flex justify-around space-x-2  px-2">
                     <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
-                      <img
-                        src="/images/call-button.svg"
-                        alt="Call"
-                        className="w-12"
-                      />
+                      <Link to={"https://wa.me/6285891367791"} target="_blank">
+                        <img
+                          src="/images/call-button.svg"
+                          alt="Call"
+                          className="w-12"
+                        />
+                      </Link>
                     </button>
                     <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
-                      <img
-                        src="/images/off-button.svg"
-                        alt="Alert"
-                        className="w-12"
-                      />
+                      <Link to={"#"}>
+                        <img
+                          src="/images/off-button.svg"
+                          alt="Alert"
+                          className="w-12"
+                        />
+                      </Link>
                     </button>
                     <button className="bg-transparent border-none cursor-pointer hover:shadow-md transition-shadow duration-200">
-                      <img
-                        src="/images/reload-button.svg"
-                        alt="Power"
-                        className="w-12"
-                      />
+                      <Link to={"#"}>
+                        <img
+                          src="/images/reload-button.svg"
+                          alt="Power"
+                          className="w-12"
+                        />
+                      </Link>
                     </button>
                   </div>
                 </div>
