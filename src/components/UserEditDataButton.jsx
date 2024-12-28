@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPencil, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Label, Modal, TextInput } from "flowbite-react";
 import axios from "axios";
 import swal from "sweetalert";
 
@@ -29,7 +27,7 @@ export default class UserEditDataButton extends Component {
 
   onCloseModal = () => {
     this.setOpenModal(false);
-    this.serName("");
+    this.setName("");
     this.setEmail("");
   };
 
@@ -39,22 +37,20 @@ export default class UserEditDataButton extends Component {
     const url = "https://your-domain.com/api/login"; // Change to your actual endpoint
 
     try {
-      await axios.post(url, {
-        name: name,
-        email: email,
-      });
+      await axios.post(url, { name, email });
       this.popupStatus("Success", "User data has changed", "success");
+      this.onCloseModal();
     } catch (error) {
-      console.log(error);
-      this.popupStatus("Failed", "Cant't change user data", "error");
+      console.error(error);
+      this.popupStatus("Failed", "Can't change user data", "error");
     }
   };
 
   popupStatus = (title, text, icon) => {
     swal({
-      title: title,
-      text: text,
-      icon: icon,
+      title,
+      text,
+      icon,
       buttons: false,
       timer: 1500,
     });
@@ -64,23 +60,25 @@ export default class UserEditDataButton extends Component {
     const { openModal, name, email } = this.state;
     return (
       <>
-        <Button
+        <li
+          className="flex items-center justify-between p-3 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
           onClick={() => this.setOpenModal(true)}
-          className="rounded-full mr-2"
         >
-          <FontAwesomeIcon icon={faPencil} className="fa-solid pt-1" />
-        </Button>
+          <div className="flex items-center gap-2">
+            <img src="/images/edit.svg" alt="edit icon" className="w-5 h-5" />
+            <span>Edit Profile</span>
+          </div>
+          <span className="text-blue-500">&gt;</span>
+        </li>
         <Modal show={openModal} size="md" onClose={this.onCloseModal} popup>
           <Modal.Header />
           <Modal.Body>
-            <div className="space-y-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white text-center">
-                Change User Data
+            <form onSubmit={this.handleSubmit} className="space-y-6">
+              <h3 className="text-xl font-medium text-gray-900 text-center">
+                Edit Profile
               </h3>
               <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="userName" value="Your Name" />
-                </div>
+                <Label htmlFor="userName" value="Your Name" className="mb-2" />
                 <TextInput
                   id="name"
                   placeholder="John Doe"
@@ -90,9 +88,7 @@ export default class UserEditDataButton extends Component {
                 />
               </div>
               <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="email" value="Your email" />
-                </div>
+                <Label htmlFor="email" value="Your Email" className="mb-2" />
                 <TextInput
                   id="email"
                   placeholder="name@company.com"
@@ -101,10 +97,13 @@ export default class UserEditDataButton extends Component {
                   required
                 />
               </div>
-              <div className="w-full">
-                <Button className="w-full">Save User Data</Button>
-              </div>
-            </div>
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-2 rounded-lg"
+              >
+                Save Changes
+              </button>
+            </form>
           </Modal.Body>
         </Modal>
       </>

@@ -1,18 +1,15 @@
 import React, { Component } from "react";
-import { Button, Label, Modal, TextInput } from "flowbite-react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye, faPaperPlane } from "@fortawesome/free-solid-svg-icons";
+import { Label, Modal, TextInput } from "flowbite-react";
 import axios from "axios";
 import swal from "sweetalert";
 
-export default class UserEditDataButton extends Component {
+export default class UserEditPasswordButton extends Component {
   constructor(props) {
     super(props);
     this.state = {
       openModal: false,
       otp: "",
-      oldPassword: "",
-      newPassword: "",
+      password: "",
     };
   }
 
@@ -24,134 +21,102 @@ export default class UserEditDataButton extends Component {
     this.setState({ otp: value });
   };
 
-  setOldPassword = (value) => {
-    this.setState({ oldPassword: value });
-  };
-
-  setNewPassword = (value) => {
-    this.setState({ newPassword: value });
+  setPassword = (value) => {
+    this.setState({ password: value });
   };
 
   onCloseModal = () => {
     this.setOpenModal(false);
     this.setOtp("");
-    this.setOldPassword("");
-    this.setNewPassword("");
+    this.setPassword("");
   };
 
-  requestOtp = async (event) => {
-    event.preventDefault();
-    const url = "https://your-domain.com/api/login"; // Change to your actual endpoint
+  requestOtp = async () => {
+    const url = "https://your-domain.com/api/request-otp";
 
     try {
-      await axios.post(url, {
-        cookies: "test", // Perlu informasi lebih lanjut
-      });
-      this.popupStatus(
-        "Success",
-        "Please check your email messages",
-        "success"
-      );
+      await axios.post(url);
+      this.popupStatus("Success", "OTP sent to your email", "success");
     } catch (error) {
-      console.log(error);
-      this.popupStatus("Failed", "Cant't send OTP to your email", "error");
+      console.error(error);
+      this.popupStatus("Failed", "Can't send OTP", "error");
     }
   };
 
   handleSubmit = async (event) => {
     event.preventDefault();
-    const { otp, oldPassword, newPassword } = this.state;
-    const url = "https://your-domain.com/api/login"; // Change to your actual endpoint
+    const { otp, password } = this.state;
+    const url = "https://your-domain.com/api/change-password";
 
     try {
-      await axios.post(url, {
-        otp: otp,
-        oldPassword: oldPassword,
-        newPassword: newPassword,
-      });
-      this.popupStatus("Success", "User password has changed", "success");
+      await axios.post(url, { otp, password });
+      this.popupStatus("Success", "Password changed successfully", "success");
+      this.onCloseModal();
     } catch (error) {
-      console.log(error);
-      this.popupStatus("Failed", "Cant't change user password", "error");
+      console.error(error);
+      this.popupStatus("Failed", "Can't change password", "error");
     }
   };
 
   popupStatus = (title, text, icon) => {
     swal({
-      title: title,
-      text: text,
-      icon: icon,
+      title,
+      text,
+      icon,
       buttons: false,
       timer: 1500,
     });
   };
 
   render() {
-    const { openModal, otp, oldPassword, newPassword } = this.state;
+    const { openModal, otp, password } = this.state;
     return (
       <>
-        <Button
+        <li
+          className="flex items-center justify-between p-3 bg-gray-100 rounded-lg shadow-sm cursor-pointer"
           onClick={() => this.setOpenModal(true)}
-          className="rounded-full mr-2"
         >
-          Change Password
-        </Button>
+          <div className="flex items-center gap-2">
+            <img src="/images/password.svg" alt="password icon" className="w-5 h-5" />
+            <span>Change Password</span>
+          </div>
+          <span className="text-blue-500">&gt;</span>
+        </li>
         <Modal show={openModal} size="md" onClose={this.onCloseModal} popup>
           <Modal.Header />
           <Modal.Body>
-            <div className="space-y-6">
-              <h3 className="text-xl font-medium text-gray-900 dark:text-white text-center">
-                Change User Password
+            <form onSubmit={this.handleSubmit} className="space-y-6">
+              <h3 className="text-xl font-medium text-gray-900 text-center">
+                Change Password
               </h3>
               <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="otp" value="OTP Code" />
-                </div>
-                <div className="flex flex-auto mt-1">
-                  <TextInput
-                    id="otp"
-                    type="number"
-                    placeholder="123456"
-                    value={otp}
-                    onChange={(event) => this.setOtp(event.target.value)}
-                    className="w-5/6"
-                    required
-                  />
-                  <Button className="w-1/6" onClick={() => requestOtp()}>
-                    <FontAwesomeIcon icon={faPaperPlane} className="w-5 h-5" />
-                  </Button>
-                </div>
-              </div>
-              <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="oldPassword" value="Old Password" />
-                </div>
+                <Label htmlFor="otp" value="OTP Code" className="mb-2" />
                 <TextInput
-                  id="oldPassword"
-                  type="password"
-                  value={oldPassword}
-                  onChange={(event) => this.setOldPassword(event.target.value)}
+                  id="otp"
+                  placeholder="123456"
+                  value={otp}
+                  onChange={(event) => this.setOtp(event.target.value)}
                   required
                 />
               </div>
               <div>
-                <div className="mb-2 block">
-                  <Label htmlFor="newPassword" value="New Password" />
-                </div>
+                <Label htmlFor="password" value="New Password" className="mb-2" />
                 <TextInput
-                  id="newPassword"
+                  id="password"
                   type="password"
-                  value={newPassword}
-                  onChange={(event) => this.setNewPassword(event.target.value)}
+                  placeholder="••••••••"
+                  value={password}
+                  onChange={(event) => this.setPassword(event.target.value)}
                   required
                 />
               </div>
-              <div className="w-full">
-                <Button onClick={this.handleSubmit} className="w-full">
-                  Save User Password
-                </Button>
-              </div>
-            </div>
+              <button
+                type="submit"
+                className="w-full bg-black text-white py-2 rounded-lg"
+              >
+                Save Changes
+              </button>
+            </form>
           </Modal.Body>
         </Modal>
       </>
